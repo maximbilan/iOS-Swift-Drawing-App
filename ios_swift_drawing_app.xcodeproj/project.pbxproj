@@ -13,6 +13,7 @@
 		6D78A2691AF0BBBA0092EE1A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D78A2681AF0BBBA0092EE1A /* Images.xcassets */; };
 		6D78A26C1AF0BBBA0092EE1A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D78A26A1AF0BBBA0092EE1A /* LaunchScreen.xib */; };
 		6D78A2781AF0BBBA0092EE1A /* ios_swift_drawing_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D78A2771AF0BBBA0092EE1A /* ios_swift_drawing_appTests.swift */; };
+		6D78A2841AF0BFAC0092EE1A /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D78A2831AF0BFAC0092EE1A /* DrawingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		6D78A2711AF0BBBA0092EE1A /* ios_swift_drawing_appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ios_swift_drawing_appTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D78A2761AF0BBBA0092EE1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D78A2771AF0BBBA0092EE1A /* ios_swift_drawing_appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_swift_drawing_appTests.swift; sourceTree = "<group>"; };
+		6D78A2831AF0BFAC0092EE1A /* DrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				6D78A2681AF0BBBA0092EE1A /* Images.xcassets */,
 				6D78A26A1AF0BBBA0092EE1A /* LaunchScreen.xib */,
 				6D78A25F1AF0BBBA0092EE1A /* Supporting Files */,
+				6D78A2831AF0BFAC0092EE1A /* DrawingView.swift */,
 			);
 			path = ios_swift_drawing_app;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D78A2841AF0BFAC0092EE1A /* DrawingView.swift in Sources */,
 				6D78A2641AF0BBBA0092EE1A /* ViewController.swift in Sources */,
 				6D78A2621AF0BBBA0092EE1A /* AppDelegate.swift in Sources */,
 			);
@@ -411,6 +415,7 @@
 				6D78A27D1AF0BBBA0092EE1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6D78A27E1AF0BBBA0092EE1A /* Build configuration list for PBXNativeTarget "ios_swift_drawing_appTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +424,7 @@
 				6D78A2801AF0BBBA0092EE1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
