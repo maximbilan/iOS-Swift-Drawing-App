@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,18 +18,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D1t-iV-bdg" customClass="DrawingView" customModule="ios_swift_drawing_app" customModuleProvider="target">
-                                <rect key="frame" x="50" y="51" width="501" height="497"/>
+                                <rect key="frame" x="16" y="38" width="568" height="542"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="501" id="PLj-4w-JOO"/>
-                                    <constraint firstAttribute="height" constant="497" id="RMl-jR-uMd"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="D1t-iV-bdg" secondAttribute="centerX" constant="-0.5" id="RPZ-RD-smU"/>
-                            <constraint firstAttribute="centerY" secondItem="D1t-iV-bdg" secondAttribute="centerY" constant="0.5" id="WHG-3X-eJB"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="D1t-iV-bdg" secondAttribute="bottom" constant="20" id="2Aa-J8-Lq3"/>
+                            <constraint firstItem="D1t-iV-bdg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="3wS-Bd-KOv"/>
+                            <constraint firstItem="D1t-iV-bdg" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="80J-gT-OYt"/>
+                            <constraint firstItem="D1t-iV-bdg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="18" id="z7c-lL-EVn"/>
                         </constraints>
                     </view>
                     <connections>
