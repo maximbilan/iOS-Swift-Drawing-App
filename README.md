@@ -20,3 +20,16 @@ class DrawingLine {
 	}
 }
 </pre>
+
+We need to store start point, last point and color.
+And DrawingView class inherited from UIView.
+
+<pre>
+class DrawingView: UIView {
+	var lines: [DrawingLine] = []
+	var lastPoint: CGPoint!
+	var drawColor = UIColor.blackColor()
+	var lineWidth: CGFloat = 5
+	
+	...
+</pre>
