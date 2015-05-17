@@ -75,3 +75,4 @@ override func drawRect(rect: CGRect) {
 </pre>
 
 Drawing of stored points.
+That's all and we have really simple drawing application written by Swift.
