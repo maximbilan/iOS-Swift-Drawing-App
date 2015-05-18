@@ -39,19 +39,19 @@ In touch handling methods we need implement the next:
 
 <pre>
 override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-		let touch: AnyObject? = touches.first
-		lastPoint = touch!.locationInView(self)
-	}
+	let touch: AnyObject? = touches.first
+	lastPoint = touch!.locationInView(self)
+}
 	
-	override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
-		let touch: AnyObject? = touches.first
+override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+	let touch: AnyObject? = touches.first
 		
-		var newPoint = touch!.locationInView(self)
-		lines.append(DrawingLine(start: lastPoint, end: newPoint, color: drawColor))
-		lastPoint = newPoint
+	var newPoint = touch!.locationInView(self)
+	lines.append(DrawingLine(start: lastPoint, end: newPoint, color: drawColor))
+	lastPoint = newPoint
 		
-		self.setNeedsDisplay()
-	}
+	self.setNeedsDisplay()
+}
 </pre>
 
 In the touches began method we write position to last point variable.
@@ -61,17 +61,17 @@ And render method:
 
 <pre>
 override func drawRect(rect: CGRect) {
-		var context = UIGraphicsGetCurrentContext()
-		CGContextBeginPath(context)
-		CGContextSetLineWidth(context, lineWidth)
-		CGContextSetLineCap(context, kCGLineCapRound)
-		for line in lines {
-			CGContextMoveToPoint(context, line.start.x, line.start.y)
-			CGContextAddLineToPoint(context, line.end.x, line.end.y)
-			CGContextSetStrokeColorWithColor(context, line.color.CGColor)
-			CGContextStrokePath(context)
-		}
+	var context = UIGraphicsGetCurrentContext()
+	CGContextBeginPath(context)
+	CGContextSetLineWidth(context, lineWidth)
+	CGContextSetLineCap(context, kCGLineCapRound)
+	for line in lines {
+		CGContextMoveToPoint(context, line.start.x, line.start.y)
+		CGContextAddLineToPoint(context, line.end.x, line.end.y)
+		CGContextSetStrokeColorWithColor(context, line.color.CGColor)
+		CGContextStrokePath(context)
 	}
+}
 </pre>
 
 Drawing of stored points.
