@@ -1,11 +1,11 @@
 <h4>iOS Swift Drawing Application Sample</h4>
 
-Simple example which describes how to draw in the UIView using Swift programming language.
+Simple example which describes how to draw in the <i>UIView</i> using <i>Swift</i> programming language.
 
 ![alt tag](https://raw.github.com/maximbilan/ios_swift_drawing_app/master/img/img1.png)
 
-We've two classes: DrawingLine and DrawingView. The first for storing data and the second for drawing.
-DrawingLine:
+We've two classes: <i>DrawingLine</i> and <i>DrawingView</i>. The first for storing data and the second for drawing.
+<i>DrawingLine</i>:
 
 <pre>
 class DrawingLine {
@@ -22,7 +22,7 @@ class DrawingLine {
 </pre>
 
 We need to store start point, last point and color.
-And DrawingView class inherited from UIView.
+And <i>DrawingView</i> class inherited from <i>UIView</i>.
 
 <pre>
 class DrawingView: UIView {
@@ -75,4 +75,4 @@ override func drawRect(rect: CGRect) {
 </pre>
 
 Drawing of stored points.
-That's all and we have really simple drawing application written by Swift.
+That's all and we have really simple drawing application written by <i>Swift</i>.
