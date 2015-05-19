@@ -29,10 +29,6 @@ class DrawingView: UIView {
 	var drawColor = UIColor.blackColor()
 	var lineWidth: CGFloat = 5
 	
-	required init(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-	}
-	
 	override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
 		let touch: AnyObject? = touches.first
 		lastPoint = touch!.locationInView(self)
