@@ -12,11 +12,13 @@ class DrawingLine {
 	var start: CGPoint
 	var end: CGPoint
 	var color: UIColor
+	var width: CGFloat
 	
-	init(start _start: CGPoint, end _end: CGPoint, color _color: UIColor!) {
+	init(start _start: CGPoint, end _end: CGPoint, color _color: UIColor!, width _width: CGFloat) {
 		start = _start
 		end = _end
 		color = _color
+		width = _width
 	}
 }
 </pre>
@@ -47,7 +49,7 @@ override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
 	let touch: AnyObject? = touches.first
 		
 	var newPoint = touch!.locationInView(self)
-	lines.append(DrawingLine(start: lastPoint, end: newPoint, color: drawColor))
+	lines.append(DrawingLine(start: lastPoint, end: newPoint, color: drawColor, width: lineWidth))
 	lastPoint = newPoint
 		
 	self.setNeedsDisplay()
@@ -63,9 +65,9 @@ And render method:
 override func drawRect(rect: CGRect) {
 	var context = UIGraphicsGetCurrentContext()
 	CGContextBeginPath(context)
-	CGContextSetLineWidth(context, lineWidth)
-	CGContextSetLineCap(context, kCGLineCapRound)
 	for line in lines {
+		CGContextSetLineWidth(context, line.width)
+		CGContextSetLineCap(context, kCGLineCapRound)
 		CGContextMoveToPoint(context, line.start.x, line.start.y)
 		CGContextAddLineToPoint(context, line.end.x, line.end.y)
 		CGContextSetStrokeColorWithColor(context, line.color.CGColor)
