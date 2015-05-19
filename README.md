@@ -23,7 +23,7 @@ class DrawingLine {
 }
 </pre>
 
-We need to store start point, last point and color.
+We need to store start point, last point, color and line width.
 And <i>DrawingView</i> class inherited from <i>UIView</i>.
 
 <pre>
@@ -36,7 +36,7 @@ class DrawingView: UIView {
 	...
 </pre>
 
-An array of lines, last point, color and line width. That's all.
+An array of lines, last point color and line width. That's all.
 In touch handling methods we need implement the next:
 
 <pre>
@@ -52,7 +52,7 @@ override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
 	lines.append(DrawingLine(start: lastPoint, end: newPoint, color: drawColor, width: lineWidth))
 	lastPoint = newPoint
 		
-	self.setNeedsDisplay()
+	setNeedsDisplay()
 }
 </pre>
 
