@@ -4,7 +4,7 @@ Simple example which describes how to draw in the <i>UIView</i> using <i>Swift</
 
 ![alt tag](https://raw.github.com/maximbilan/ios_swift_drawing_app/master/img/img1.png)
 
-We've two classes: <i>DrawingLine</i> and <i>DrawingView</i>. The first for storing data and the second for drawing.
+We have two classes: <i>DrawingLine</i> and <i>DrawingView</i>. The first for storing data and the second for drawing.
 <i>DrawingLine</i>:
 
 <pre>
