@@ -76,12 +76,19 @@ override func drawRect(rect: CGRect) {
 }
 </pre>
 
-Drawing of stored points.
+Drawing of stored points.<br>
 For clearing the view we need remove all lines and update the display:
 <pre>
 func clear() {
 	lines.removeAll(keepCapacity: false)
 	setNeedsDisplay()
+}
+</pre>
+
+And for checking lines on the view:
+<pre>
+func hasLines() -> Bool {
+	return lines.count > 0
 }
 </pre>
 
