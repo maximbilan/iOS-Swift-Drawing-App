@@ -77,4 +77,12 @@ override func drawRect(rect: CGRect) {
 </pre>
 
 Drawing of stored points.
+For clearing the view we need remove all lines and update the display:
+<pre>
+func clear() {
+	lines.removeAll(keepCapacity: false)
+	setNeedsDisplay()
+}
+</pre>
+
 That's all and we have really simple drawing application written by <i>Swift</i>.
