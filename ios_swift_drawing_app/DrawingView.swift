@@ -56,5 +56,14 @@ class DrawingView: UIView {
 			CGContextStrokePath(context)
 		}
 	}
-	
+
+	func clear() {
+		lines.removeAll(keepCapacity: false)
+		setNeedsDisplay()
+	}
+
+	func hasLines() -> Bool {
+		return lines.count > 0
+	}
+
 }
