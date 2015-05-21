@@ -93,6 +93,6 @@ func hasLines() -> Bool {
 </pre>
 
 That's all and we have really simple drawing application written by <i>Swift</i>.
-
+<br>
 To do:
-- improve performance
+- Improve performance
