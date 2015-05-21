@@ -25,28 +25,40 @@ class DrawingLine {
 class DrawingView: UIView {
 	
 	var lines: [DrawingLine] = []
+	var currentLines: [DrawingLine] = []
+	
 	var lastPoint: CGPoint!
 	var drawColor = UIColor.blackColor()
 	var lineWidth: CGFloat = 5
 	
+	private var preRenderImage: UIImage!
+	
 	override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
 		let touch: AnyObject? = touches.first
 		lastPoint = touch!.locationInView(self)
+		
+		currentLines.removeAll(keepCapacity: false)
 	}
 	
 	override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
 		let touch: AnyObject? = touches.first
 		
 		var newPoint = touch!.locationInView(self)
-		lines.append(DrawingLine(start: lastPoint, end: newPoint, color: drawColor, width: lineWidth))
+		
+		let line = DrawingLine(start: lastPoint, end: newPoint, color: drawColor, width: lineWidth)
+		lines.append(line)
+		currentLines.append(line)
 		lastPoint = newPoint
 		
-		setNeedsDisplay()
-	}
-	
-	override func drawRect(rect: CGRect) {
-		var context = UIGraphicsGetCurrentContext()
-		CGContextBeginPath(context)
+		let imageRect = self.frame
+		let imageSize = imageRect.size
+		
+		UIGraphicsBeginImageContext(imageSize)
+//		if preRenderImage != nil {
+//			preRenderImage.drawInRect(imageRect)
+//		}
+		
+		let context = UIGraphicsGetCurrentContext()
 		for line in lines {
 			CGContextSetLineWidth(context, line.width)
 			CGContextSetLineCap(context, kCGLineCapRound)
@@ -54,6 +66,31 @@ class DrawingView: UIView {
 			CGContextAddLineToPoint(context, line.end.x, line.end.y)
 			CGContextSetStrokeColorWithColor(context, line.color.CGColor)
 			CGContextStrokePath(context)
+		}
+		
+		preRenderImage = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		
+		setNeedsDisplay()
+	}
+	
+	override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+		
+	}
+	
+	override func drawRect(rect: CGRect) {
+//		var context = UIGraphicsGetCurrentContext()
+//		CGContextBeginPath(context)
+//		for line in lines {
+//			CGContextSetLineWidth(context, line.width)
+//			CGContextSetLineCap(context, kCGLineCapRound)
+//			CGContextMoveToPoint(context, line.start.x, line.start.y)
+//			CGContextAddLineToPoint(context, line.end.x, line.end.y)
+//			CGContextSetStrokeColorWithColor(context, line.color.CGColor)
+//			CGContextStrokePath(context)
+//		}
+		if preRenderImage != nil {
+			preRenderImage.drawInRect(rect)
 		}
 	}
 
