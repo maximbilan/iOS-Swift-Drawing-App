@@ -8,24 +8,7 @@
 
 import UIKit
 
-class DrawingLine {
-	var start: CGPoint
-	var end: CGPoint
-	var color: UIColor
-	var width: CGFloat
-	
-	init(start _start: CGPoint, end _end: CGPoint, color _color: UIColor!, width _width: CGFloat) {
-		start = _start
-		end = _end
-		color = _color
-		width = _width
-	}
-}
-
 class DrawingView: UIView {
-	
-	var lines: [DrawingLine] = []
-	var currentLines: [DrawingLine] = []
 	
 	var lastPoint: CGPoint!
 	var drawColor = UIColor.blackColor()
@@ -36,6 +19,8 @@ class DrawingView: UIView {
 	var bezierPath: UIBezierPath!
 	
 	private var preRenderImage: UIImage!
+	
+	// MARK: Initialization
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -55,13 +40,13 @@ class DrawingView: UIView {
 		bezierPath.lineJoinStyle = kCGLineJoinRound
 	}
 	
+	// MARK: Touch handling
+	
 	override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
 		let touch: AnyObject? = touches.first
 		lastPoint = touch!.locationInView(self)
 		
 		counter = 0
-		
-		//currentLines.removeAll(keepCapacity: false)
 	}
 	
 	override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -69,37 +54,8 @@ class DrawingView: UIView {
 		
 		var newPoint = touch!.locationInView(self)
 		
-		let line = DrawingLine(start: lastPoint, end: newPoint, color: drawColor, width: lineWidth)
-//		lines.append(line)
-//		currentLines.append(line)
-//		lastPoint = newPoint
-//		
-//		let imageRect = self.frame
-//		let imageSize = imageRect.size
-//		
-//		UIGraphicsBeginImageContext(imageSize)
-////		if preRenderImage != nil {
-////			preRenderImage.drawInRect(imageRect)
-////		}
-//		
-//		let context = UIGraphicsGetCurrentContext()
-//		for line in lines {
-//			CGContextSetLineWidth(context, line.width)
-//			CGContextSetLineCap(context, kCGLineCapRound)
-//			CGContextMoveToPoint(context, line.start.x, line.start.y)
-//			CGContextAddLineToPoint(context, line.end.x, line.end.y)
-//			CGContextSetStrokeColorWithColor(context, line.color.CGColor)
-//			CGContextStrokePath(context)
-//		}
-//		
-//		preRenderImage = UIGraphicsGetImageFromCurrentImageContext()
-//		UIGraphicsEndImageContext()
-//		
-//		setNeedsDisplay()
-		
-		bezierPath.moveToPoint(line.start)
-		bezierPath.addLineToPoint(line.end)
-		
+		bezierPath.moveToPoint(lastPoint)
+		bezierPath.addLineToPoint(newPoint)
 		lastPoint = newPoint
 		
 		++counter
@@ -118,34 +74,23 @@ class DrawingView: UIView {
 	}
 	
 	override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-		
-//		[self drawBitmapImage];
-//		[self setNeedsDisplay];
-//		[beizerPath removeAllPoints];
-		
 		renderToImage()
 		setNeedsDisplay()
 		bezierPath.removeAllPoints()
 	}
 	
+	override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
+		touchesEnded(touches, withEvent: event)
+	}
+	
 	// MARK: Pre render
 	
 	func renderToImage() {
-		//UIGraphicsBeginImageContextWithOptions(self.bounds.size, YES, 0.0);
 		
 		UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, 0.0)
 		if preRenderImage != nil {
 			preRenderImage.drawInRect(self.bounds)
 		}
-		else {
-//			UIBezierPath *rectpath = [UIBezierPath bezierPathWithRect:self.bounds];
-//			[[UIColor whiteColor] setFill];
-//			[rectpath fill];
-//			let rectPath = UIBezierPath(rect: self.bounds)
-//			UIColor.clearColor().setFill()
-//			rectPath.fill()
-		}
-
 		
 		bezierPath.lineWidth = lineWidth
 		
@@ -156,39 +101,16 @@ class DrawingView: UIView {
 		preRenderImage = UIGraphicsGetImageFromCurrentImageContext()
 		
 		UIGraphicsEndImageContext()
-		
-//		[beizerPath stroke];
-//		incrImage = UIGraphicsGetImageFromCurrentImageContext();
-//		UIGraphicsEndImageContext();
-		
 	}
 	
 	// MARK: Render
 	
 	override func drawRect(rect: CGRect) {
-//		var context = UIGraphicsGetCurrentContext()
-//		CGContextBeginPath(context)
-//		for line in lines {
-//			CGContextSetLineWidth(context, line.width)
-//			CGContextSetLineCap(context, kCGLineCapRound)
-//			CGContextMoveToPoint(context, line.start.x, line.start.y)
-//			CGContextAddLineToPoint(context, line.end.x, line.end.y)
-//			CGContextSetStrokeColorWithColor(context, line.color.CGColor)
-//			CGContextStrokePath(context)
-//		}
-//		if preRenderImage != nil {
-//			preRenderImage.drawInRect(rect)
-//		}
 		super.drawRect(rect)
 		
 		if preRenderImage != nil {
 			preRenderImage.drawInRect(self.bounds)
 		}
-		
-//		UIColor *fillColor = INITIAL_COLOR;
-//		[fillColor setFill];
-//		UIColor *strokeColor = INITIAL_COLOR;
-//		[strokeColor setStroke];
 		
 		bezierPath.lineWidth = lineWidth
 		
@@ -198,13 +120,18 @@ class DrawingView: UIView {
 		bezierPath.stroke()
 	}
 
+	// MARK: Clearing
+	
 	func clear() {
-		lines.removeAll(keepCapacity: false)
+		preRenderImage = nil
+		bezierPath.removeAllPoints()
 		setNeedsDisplay()
 	}
+	
+	// MARK: Other
 
 	func hasLines() -> Bool {
-		return lines.count > 0
+		return preRenderImage != nil || !bezierPath.empty
 	}
 
 }
