@@ -49,12 +49,15 @@ class DrawingView: UIView {
 	
 	func initBezierPath() {
 		bezierPath = UIBezierPath()
-		bezierPath.lineWidth = lineWidth
+		bezierPath.lineCapStyle = kCGLineCapRound
+		bezierPath.lineJoinStyle = kCGLineJoinRound
 	}
 	
 	override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
 		let touch: AnyObject? = touches.first
 		lastPoint = touch!.locationInView(self)
+		
+		
 		
 		//currentLines.removeAll(keepCapacity: false)
 	}
@@ -129,6 +132,11 @@ class DrawingView: UIView {
 //			rectPath.fill()
 		}
 
+		
+		bezierPath.lineWidth = lineWidth
+		
+		drawColor.setFill()
+		drawColor.setStroke()
 		bezierPath.stroke()
 		
 		preRenderImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -162,6 +170,16 @@ class DrawingView: UIView {
 		if preRenderImage != nil {
 			preRenderImage.drawInRect(self.bounds)
 		}
+		
+//		UIColor *fillColor = INITIAL_COLOR;
+//		[fillColor setFill];
+//		UIColor *strokeColor = INITIAL_COLOR;
+//		[strokeColor setStroke];
+		
+		bezierPath.lineWidth = lineWidth
+		
+		drawColor.setFill()
+		drawColor.setStroke()
 		
 		bezierPath.stroke()
 	}
