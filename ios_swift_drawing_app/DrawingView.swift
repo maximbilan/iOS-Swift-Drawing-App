@@ -10,14 +10,13 @@ import UIKit
 
 class DrawingView: UIView {
 	
-	var lastPoint: CGPoint!
 	var drawColor = UIColor.blackColor()
 	var lineWidth: CGFloat = 5
 	
-	var counter: Int = 0
-	
-	var bezierPath: UIBezierPath!
-	
+	private var lastPoint: CGPoint!
+	private var bezierPath: UIBezierPath!
+	private var pointCounter: Int = 0
+	private let pointLimit: Int = 128
 	private var preRenderImage: UIImage!
 	
 	// MARK: Initialization
@@ -45,35 +44,32 @@ class DrawingView: UIView {
 	override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
 		let touch: AnyObject? = touches.first
 		lastPoint = touch!.locationInView(self)
-		
-		counter = 0
+		pointCounter = 0
 	}
 	
 	override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
 		let touch: AnyObject? = touches.first
-		
 		var newPoint = touch!.locationInView(self)
 		
 		bezierPath.moveToPoint(lastPoint)
 		bezierPath.addLineToPoint(newPoint)
 		lastPoint = newPoint
 		
-		++counter
+		++pointCounter
 		
-		if counter == 100 {
-			counter = 0
+		if pointCounter == pointLimit {
+			pointCounter = 0
 			renderToImage()
 			setNeedsDisplay()
 			bezierPath.removeAllPoints()
-			println("render to image")
 		}
 		else {
 			setNeedsDisplay()
 		}
-		
 	}
 	
 	override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+		pointCounter = 0
 		renderToImage()
 		setNeedsDisplay()
 		bezierPath.removeAllPoints()
@@ -93,7 +89,6 @@ class DrawingView: UIView {
 		}
 		
 		bezierPath.lineWidth = lineWidth
-		
 		drawColor.setFill()
 		drawColor.setStroke()
 		bezierPath.stroke()
@@ -113,10 +108,8 @@ class DrawingView: UIView {
 		}
 		
 		bezierPath.lineWidth = lineWidth
-		
 		drawColor.setFill()
 		drawColor.setStroke()
-		
 		bezierPath.stroke()
 	}
 
