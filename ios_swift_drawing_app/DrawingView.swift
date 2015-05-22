@@ -31,6 +31,8 @@ class DrawingView: UIView {
 	var drawColor = UIColor.blackColor()
 	var lineWidth: CGFloat = 5
 	
+	var counter: Int = 0
+	
 	var bezierPath: UIBezierPath!
 	
 	private var preRenderImage: UIImage!
@@ -57,7 +59,7 @@ class DrawingView: UIView {
 		let touch: AnyObject? = touches.first
 		lastPoint = touch!.locationInView(self)
 		
-		
+		counter = 0
 		
 		//currentLines.removeAll(keepCapacity: false)
 	}
@@ -100,7 +102,19 @@ class DrawingView: UIView {
 		
 		lastPoint = newPoint
 		
-		setNeedsDisplay()
+		++counter
+		
+		if counter == 100 {
+			counter = 0
+			renderToImage()
+			setNeedsDisplay()
+			bezierPath.removeAllPoints()
+			println("render to image")
+		}
+		else {
+			setNeedsDisplay()
+		}
+		
 	}
 	
 	override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
