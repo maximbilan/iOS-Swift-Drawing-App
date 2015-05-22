@@ -56,7 +56,7 @@ class DrawingView: UIView {
 		let touch: AnyObject? = touches.first
 		lastPoint = touch!.locationInView(self)
 		
-		currentLines.removeAll(keepCapacity: false)
+		//currentLines.removeAll(keepCapacity: false)
 	}
 	
 	override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -102,7 +102,46 @@ class DrawingView: UIView {
 	
 	override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
 		
+//		[self drawBitmapImage];
+//		[self setNeedsDisplay];
+//		[beizerPath removeAllPoints];
+		
+		renderToImage()
+		setNeedsDisplay()
+		bezierPath.removeAllPoints()
 	}
+	
+	// MARK: Pre render
+	
+	func renderToImage() {
+		//UIGraphicsBeginImageContextWithOptions(self.bounds.size, YES, 0.0);
+		
+		UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, 0.0)
+		if preRenderImage != nil {
+			preRenderImage.drawInRect(self.bounds)
+		}
+		else {
+//			UIBezierPath *rectpath = [UIBezierPath bezierPathWithRect:self.bounds];
+//			[[UIColor whiteColor] setFill];
+//			[rectpath fill];
+//			let rectPath = UIBezierPath(rect: self.bounds)
+//			UIColor.clearColor().setFill()
+//			rectPath.fill()
+		}
+
+		bezierPath.stroke()
+		
+		preRenderImage = UIGraphicsGetImageFromCurrentImageContext()
+		
+		UIGraphicsEndImageContext()
+		
+//		[beizerPath stroke];
+//		incrImage = UIGraphicsGetImageFromCurrentImageContext();
+//		UIGraphicsEndImageContext();
+		
+	}
+	
+	// MARK: Render
 	
 	override func drawRect(rect: CGRect) {
 //		var context = UIGraphicsGetCurrentContext()
@@ -119,6 +158,10 @@ class DrawingView: UIView {
 //			preRenderImage.drawInRect(rect)
 //		}
 		super.drawRect(rect)
+		
+		if preRenderImage != nil {
+			preRenderImage.drawInRect(self.bounds)
+		}
 		
 		bezierPath.stroke()
 	}
