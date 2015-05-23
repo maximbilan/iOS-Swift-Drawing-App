@@ -7,13 +7,13 @@ Simple example which describes how to draw in the <i>UIView</i> using <i>Swift</
 We need to create the class DrawingView inherited from UIView. With the next properties:
 <pre>
 var drawColor = UIColor.blackColor()	// Color for drawing
-var lineWidth: CGFloat = 5			// Line width
+var lineWidth: CGFloat = 5				// Line width
 	
 private var lastPoint: CGPoint!			// Point for storing the last position
-private var bezierPath: UIBezierPath!		// Bezier path
+private var bezierPath: UIBezierPath!	// Bezier path
 private var pointCounter: Int = 0		// Counter of ponts
 private let pointLimit: Int = 128		// Limit of points
-private var preRenderImage: UIImage!		// Pre render image
+private var preRenderImage: UIImage!	// Pre render image
 </pre>
 
 First of all, initialization. We need to create UIBezierPath and setup some properties.
