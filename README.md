@@ -1,5 +1,5 @@
 <h4>iOS Swift Drawing Application Sample</h4>
-===
+
 Simple example which describes how to draw in the <i>UIView</i> using <i>Swift</i> programming language.
 
 ![alt tag](https://raw.github.com/maximbilan/ios_swift_drawing_app/master/img/img1.png)
@@ -74,8 +74,8 @@ override func drawRect(rect: CGRect) {
 	}
 </pre>
 
-First, draw the pre render image and after that current bezier path.
-And the main of our application is touch handling.
+First, draw the pre render image and after that current bezier path.<br>
+Noew, main of our application, it's touch handling.
 
 In touchesBegan function we save last point and reset the point counter.
 
