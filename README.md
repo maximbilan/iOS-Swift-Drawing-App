@@ -123,7 +123,7 @@ override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
 }
 </pre>
 
-In <i>touchesCancelled</i> function just call <i>touchesEnded</i> method.
+In <i>touchesCancelled</i> function just call <i>touchesEnded</i>.
 
 <pre>
 override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
@@ -131,7 +131,7 @@ override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent
 }
 </pre>
 
-For clearing the view we need remove all lines and update the display:
+For clearing the view we need remove all points from bezier path, reset the pre render image and update the display:
 
 <pre>
 preRenderImage = nil
