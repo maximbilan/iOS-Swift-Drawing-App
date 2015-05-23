@@ -81,11 +81,11 @@
 			children = (
 				6D78A2611AF0BBBA0092EE1A /* AppDelegate.swift */,
 				6D78A2631AF0BBBA0092EE1A /* ViewController.swift */,
+				6D78A2831AF0BFAC0092EE1A /* DrawingView.swift */,
 				6D78A2651AF0BBBA0092EE1A /* Main.storyboard */,
 				6D78A2681AF0BBBA0092EE1A /* Images.xcassets */,
 				6D78A26A1AF0BBBA0092EE1A /* LaunchScreen.xib */,
 				6D78A25F1AF0BBBA0092EE1A /* Supporting Files */,
-				6D78A2831AF0BFAC0092EE1A /* DrawingView.swift */,
 			);
 			path = ios_swift_drawing_app;
 			sourceTree = "<group>";
