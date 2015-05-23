@@ -4,7 +4,7 @@ Simple example which describes how to draw in the <i>UIView</i> using <i>Swift</
 
 ![alt tag](https://raw.github.com/maximbilan/ios_swift_drawing_app/master/img/img1.png)
 
-We need to create the class <i>DrawingView</i> inherited from <i>UIView</i>. With the next properties:
+We need to create the class <i>DrawingView</i> inherited from <i>UIView</i>. With the following properties:
 <pre>
 var drawColor = UIColor.blackColor()	// Color for drawing
 var lineWidth: CGFloat = 5				// Line width
@@ -38,7 +38,7 @@ func initBezierPath() {
 }
 </pre>
 
-For better performance we will store bezier path rendering to <i>UIImage</i>, so, create the function <i>renderToImage</i>.
+For better performance we will store bezier path rendering to <i>UIImage</i>, so create the function <i>renderToImage</i>.
 <pre>
 func renderToImage() {
 		
@@ -112,7 +112,7 @@ override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
 }
 </pre>
 
-In <i>touchesEnded</i> function reset pointer counter, render bezier path to <i>UIImage</i> and reset bezier path and update the screen.
+In <i>touchesEnded</i> function reset pointer counter, render bezier path to <i>UIImage</i>, reset bezier path and update the screen.
 
 <pre>
 override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
