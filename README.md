@@ -134,9 +134,11 @@ override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent
 For clearing the view we need remove all points from bezier path, reset the pre render image and update the display:
 
 <pre>
-preRenderImage = nil
-bezierPath.removeAllPoints()
-setNeedsDisplay()
+func clear() {
+	preRenderImage = nil
+	bezierPath.removeAllPoints()
+	setNeedsDisplay()
+}
 </pre>
 
 And for checking lines on the view:
