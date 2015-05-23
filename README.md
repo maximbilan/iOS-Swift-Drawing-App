@@ -74,7 +74,7 @@ override func drawRect(rect: CGRect) {
 }
 </pre>
 
-First, draw the pre render image and after that current bezier path.<br>
+First, draw the pre render image and after that render current bezier path.<br>
 Now, main of our application, it's touch handling.
 
 In <i>touchesBegan</i> function we save last point and reset the point counter.
