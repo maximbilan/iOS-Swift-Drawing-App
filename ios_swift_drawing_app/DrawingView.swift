@@ -19,7 +19,7 @@ class DrawingView: UIView {
 	private let pointLimit: Int = 128
 	private var preRenderImage: UIImage!
 	
-	// MARK: Initialization
+	// MARK: - Initialization
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -39,7 +39,7 @@ class DrawingView: UIView {
 		bezierPath.lineJoinStyle = kCGLineJoinRound
 	}
 	
-	// MARK: Touch handling
+	// MARK: - Touch handling
 	
 	override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
 		let touch: AnyObject? = touches.first
@@ -79,7 +79,7 @@ class DrawingView: UIView {
 		touchesEnded(touches, withEvent: event)
 	}
 	
-	// MARK: Pre render
+	// MARK: - Pre render
 	
 	func renderToImage() {
 		
@@ -98,7 +98,7 @@ class DrawingView: UIView {
 		UIGraphicsEndImageContext()
 	}
 	
-	// MARK: Render
+	// MARK: - Render
 	
 	override func drawRect(rect: CGRect) {
 		super.drawRect(rect)
@@ -113,7 +113,7 @@ class DrawingView: UIView {
 		bezierPath.stroke()
 	}
 
-	// MARK: Clearing
+	// MARK: - Clearing
 	
 	func clear() {
 		preRenderImage = nil
@@ -121,7 +121,7 @@ class DrawingView: UIView {
 		setNeedsDisplay()
 	}
 	
-	// MARK: Other
+	// MARK: - Other
 
 	func hasLines() -> Bool {
 		return preRenderImage != nil || !bezierPath.empty
