@@ -27,7 +27,7 @@ class DrawingView: UIView {
 		initBezierPath()
 	}
 
-	required init(coder aDecoder: NSCoder) {
+	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
 		initBezierPath()
@@ -35,21 +35,21 @@ class DrawingView: UIView {
 	
 	func initBezierPath() {
 		bezierPath = UIBezierPath()
-		bezierPath.lineCapStyle = kCGLineCapRound
-		bezierPath.lineJoinStyle = kCGLineJoinRound
+		bezierPath.lineCapStyle = CGLineCap.Round
+		bezierPath.lineJoinStyle = CGLineJoin.Round
 	}
 	
 	// MARK: - Touch handling
 	
-	override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
 		let touch: AnyObject? = touches.first
 		lastPoint = touch!.locationInView(self)
 		pointCounter = 0
 	}
 	
-	override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+	override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
 		let touch: AnyObject? = touches.first
-		var newPoint = touch!.locationInView(self)
+		let newPoint = touch!.locationInView(self)
 		
 		bezierPath.moveToPoint(lastPoint)
 		bezierPath.addLineToPoint(newPoint)
@@ -68,15 +68,15 @@ class DrawingView: UIView {
 		}
 	}
 	
-	override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+	override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
 		pointCounter = 0
 		renderToImage()
 		setNeedsDisplay()
 		bezierPath.removeAllPoints()
 	}
 	
-	override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
-		touchesEnded(touches, withEvent: event)
+	override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+		touchesEnded(touches!, withEvent: event)
 	}
 	
 	// MARK: - Pre render
