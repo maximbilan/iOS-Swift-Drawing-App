@@ -55,7 +55,7 @@ class DrawingView: UIView {
 		bezierPath.addLineToPoint(newPoint)
 		lastPoint = newPoint
 		
-		++pointCounter
+		pointCounter += 1
 		
 		if pointCounter == pointLimit {
 			pointCounter = 0
