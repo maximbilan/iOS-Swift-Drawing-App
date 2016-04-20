@@ -87,7 +87,7 @@ override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
 }
 </pre>
 
-In <i>touchesMoved</i> function, add point to bezier path, increment point counter and if point counter equals point limit, than render bezier path to <i>UIImage</i> and reset bezier path. And of course update the screen.
+In <i>touchesMoved</i> function, add point to bezier path, increment point counter and if point counter equals point limit, than render bezier path to <i>UIImage</i> and reset bezier path. And update the screen.
 
 <pre>
 override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
