@@ -10,7 +10,7 @@ import UIKit
 
 class DrawingView: UIView {
 	
-	var drawColor = UIColor.blackColor()
+	var drawColor = UIColor.black
 	var lineWidth: CGFloat = 5
 	
 	private var lastPoint: CGPoint!
@@ -35,8 +35,8 @@ class DrawingView: UIView {
 	
 	func initBezierPath() {
 		bezierPath = UIBezierPath()
-		bezierPath.lineCapStyle = CGLineCap.Round
-		bezierPath.lineJoinStyle = CGLineJoin.Round
+		bezierPath.lineCapStyle = CGLineCap.round
+		bezierPath.lineJoinStyle = CGLineJoin.round
 	}
 	
 	// MARK: - Touch handling
@@ -124,7 +124,7 @@ class DrawingView: UIView {
 	// MARK: - Other
 
 	func hasLines() -> Bool {
-		return preRenderImage != nil || !bezierPath.empty
+		return preRenderImage != nil || !bezierPath.isEmpty
 	}
 
 }
