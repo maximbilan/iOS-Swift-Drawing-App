@@ -41,15 +41,15 @@ class DrawingView: UIView {
 	
 	// MARK: - Touch handling
 	
-	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		let touch: AnyObject? = touches.first
-		lastPoint = touch!.location(self)
+		lastPoint = touch!.location(in: self)
 		pointCounter = 0
 	}
 	
-	override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
 		let touch: AnyObject? = touches.first
-		let newPoint = touch!.location(self)
+		let newPoint = touch!.location(in: self)
 		
 		bezierPath.move(to: lastPoint)
 		bezierPath.addLine(to: newPoint)
@@ -68,14 +68,14 @@ class DrawingView: UIView {
 		}
 	}
 	
-	override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		pointCounter = 0
 		renderToImage()
 		setNeedsDisplay()
 		bezierPath.removeAllPoints()
 	}
 	
-	override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+	override func touchesCancelled(_ touches: Set<UITouch>?, with event: UIEvent?) {
 		touchesEnded(touches!, with: event)
 	}
 	
