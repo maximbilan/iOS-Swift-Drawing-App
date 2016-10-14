@@ -43,16 +43,16 @@ class DrawingView: UIView {
 	
 	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
 		let touch: AnyObject? = touches.first
-		lastPoint = touch!.locationInView(self)
+		lastPoint = touch!.location(self)
 		pointCounter = 0
 	}
 	
 	override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
 		let touch: AnyObject? = touches.first
-		let newPoint = touch!.locationInView(self)
+		let newPoint = touch!.location(self)
 		
-		bezierPath.moveToPoint(lastPoint)
-		bezierPath.addLineToPoint(newPoint)
+		bezierPath.move(to: lastPoint)
+		bezierPath.addLine(to: newPoint)
 		lastPoint = newPoint
 		
 		pointCounter += 1
@@ -76,7 +76,7 @@ class DrawingView: UIView {
 	}
 	
 	override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
-		touchesEnded(touches!, withEvent: event)
+		touchesEnded(touches!, with: event)
 	}
 	
 	// MARK: - Pre render
@@ -85,7 +85,7 @@ class DrawingView: UIView {
 		
 		UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, 0.0)
 		if preRenderImage != nil {
-			preRenderImage.drawInRect(self.bounds)
+			preRenderImage.draw(in: self.bounds)
 		}
 		
 		bezierPath.lineWidth = lineWidth
@@ -100,11 +100,11 @@ class DrawingView: UIView {
 	
 	// MARK: - Render
 	
-	override func drawRect(rect: CGRect) {
-		super.drawRect(rect)
+	override func draw(_ rect: CGRect) {
+		super.draw(rect)
 		
 		if preRenderImage != nil {
-			preRenderImage.drawInRect(self.bounds)
+			preRenderImage.draw(in: self.bounds)
 		}
 		
 		bezierPath.lineWidth = lineWidth
