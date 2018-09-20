@@ -2,17 +2,15 @@
 
 Simple example which describes how to draw in the <i>UIView</i> using <i>Swift</i> programming language.
 
-![alt tag](https://raw.github.com/maximbilan/ios_swift_drawing_app/master/img/img1.png)
-
 We need to create the class <i>DrawingView</i> inherited from <i>UIView</i>. With the following properties:
 <pre>
 var drawColor = UIColor.blackColor()	// Color for drawing
-var lineWidth: CGFloat = 5				// Line width
+var lineWidth: CGFloat = 5		// Line width
 	
-private var lastPoint: CGPoint!			// Point for storing the last position
+private var lastPoint: CGPoint!		// Point for storing the last position
 private var bezierPath: UIBezierPath!	// Bezier path
-private var pointCounter: Int = 0		// Counter of ponts
-private let pointLimit: Int = 128		// Limit of points
+private var pointCounter: Int = 0	// Counter of ponts
+private let pointLimit: Int = 128	// Limit of points
 private var preRenderImage: UIImage!	// Pre render image
 </pre>
 
