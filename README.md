@@ -1,7 +1,6 @@
 <h4>iOS Swift Drawing Application Sample</h4>
 
 Simple example which describes how to draw in the <i>UIView</i> using <i>Swift</i> programming language.
-
 We need to create the class <i>DrawingView</i> inherited from <i>UIView</i>. With the following properties:
 <pre>
 var drawColor = UIColor.blackColor()	// Color for drawing
