@@ -1,19 +1,19 @@
 <h4>iOS Swift Drawing Application Sample</h4>
 
-Simple example which describes how to draw in the <i>UIView</i> using <i>Swift</i> programming language.
+A simple example which describes how to draw in the <i>UIView</i> using <i>Swift</i> programming language.
 We need to create the class <i>DrawingView</i> inherited from <i>UIView</i>. With the following properties:
 <pre>
-var drawColor = UIColor.blackColor()	// Color for drawing
-var lineWidth: CGFloat = 5		// Line width
+var drawColor = UIColor.blackColor()	// A color for drawing
+var lineWidth: CGFloat = 5		// A line width
 	
-private var lastPoint: CGPoint!		// Point for storing the last position
-private var bezierPath: UIBezierPath!	// Bezier path
-private var pointCounter: Int = 0	// Counter of ponts
-private let pointLimit: Int = 128	// Limit of points
-private var preRenderImage: UIImage!	// Pre render image
+private var lastPoint: CGPoint!		// A point for storing the last position
+private var bezierPath: UIBezierPath!	// A bezier path
+private var pointCounter: Int = 0	// A counter of ponts
+private let pointLimit: Int = 128	// A limit of points
+private var preRenderImage: UIImage!	// A pre-render image
 </pre>
 
-First of all, initialization. We need to create <i>UIBezierPath</i> and setup some properties.
+First of all, initialization. We need to create <i>UIBezierPath</i> and set up some properties.
 
 <pre>
 override init(frame: CGRect) {
@@ -35,7 +35,7 @@ func initBezierPath() {
 }
 </pre>
 
-For better performance we will store bezier path rendering to <i>UIImage</i>, so create the function <i>renderToImage</i>.
+For better performance we will store the bezier path rendering to <i>UIImage</i>, so create the function <i>renderToImage</i>.
 <pre>
 func renderToImage() {
 		
@@ -71,10 +71,10 @@ override func drawRect(rect: CGRect) {
 }
 </pre>
 
-First, draw the pre render image and after that render current bezier path.<br>
+First, draw the pre-render image and after that render the current bezier path.<br>
 Now, main of our application, it's touch handling.
 
-In <i>touchesBegan</i> function we save last point and reset the point counter.
+In <i>touchesBegan</i> function we save the last point and reset the point counter.
 
 <pre>
 override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -84,7 +84,7 @@ override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
 }
 </pre>
 
-In <i>touchesMoved</i> function, add point to bezier path, increment point counter and if point counter equals point limit, than render bezier path to <i>UIImage</i> and reset bezier path. And update the screen.
+In <i>touchesMoved</i> function, add a point to the bezier path, increment the point counter and if the point counter equals a point limit, than render the bezier path to <i>UIImage</i> and reset the bezier path. And update the screen.
 
 <pre>
 override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -109,7 +109,7 @@ override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
 }
 </pre>
 
-In <i>touchesEnded</i> function reset pointer counter, render bezier path to <i>UIImage</i>, reset bezier path and update the screen.
+In <i>touchesEnded</i> function reset the pointer counter, render the bezier path to <i>UIImage</i>, reset the bezier path and update the screen.
 
 <pre>
 override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -128,7 +128,7 @@ override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent
 }
 </pre>
 
-For clearing the view we need remove all points from bezier path, reset the pre render image and update the display:
+For clearing the view we need remove all points from the bezier path, reset the pre-render image and update the display:
 
 <pre>
 func clear() {
